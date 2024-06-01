@@ -21,7 +21,7 @@ class PortfolioApp extends StatelessWidget {
     return Center(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Prashh',
+        title: 'Prashant Mane',
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.transparent,
           fontFamily: 'Montserrat',
@@ -75,40 +75,41 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: FutureBuilder<void>(
-          future: _imageLoader,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/bg_image2.jpg'),
-                    fit: BoxFit.cover,
+    return  Scaffold(
+        body: Center(
+          child: FutureBuilder<void>(
+            future: _imageLoader,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return Container(
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/bg_image2.jpg'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-                child: const SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppBarSection(),
-                      HeaderSection(),
-                      SkillsSection(),
-                      EducationSection(),
-                      ExperienceSection(),
-                      ProjectsSection(),
-                      ContactSection(),
-                    ],
+                  child: const SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppBarSection(),
+                        HeaderSection(),
+                        SkillsSection(),
+                        EducationSection(),
+                        ExperienceSection(),
+                        ProjectsSection(),
+                        ContactSection(),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            } else {
-              return const CircularProgressIndicator();
-            }
-          },
+                );
+              } else {
+                return const CircularProgressIndicator();
+              }
+            },
+          ),
         ),
-      ),
+      
     );
   }
 }
