@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:port_fol/widgets/border_painter.dart';
+import 'package:port_2/widgets/border_painter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HeaderSection extends StatefulWidget {
@@ -46,164 +46,168 @@ class _HeaderSectionState extends State<HeaderSection>
     return Center(
       child: FadeScaleTransition(
         animation: _animation,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 140),
-          child: Expanded(
-            child: Column(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 150,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const AnimatedCircle(),
+            // const CircleAvatar(
+            //   radius: 50,
+            //   //backgroundImage: AssetImage('assets/images/link_two.png'),
+            //   child: Icon(Icons.person),
+            // ),
+            const SizedBox(height: 20),
+            MouseRegion(
+              onEnter: (_) => setState(() => _isHovered = true),
+              onExit: (_) => setState(() => _isHovered = false),
+              child: GestureDetector(
+                onScaleStart: (details) {
+                  _previousScale = _scale;
+                  setState(() {});
+                },
+                onScaleUpdate: (details) {
+                  _scale = _previousScale * details.scale;
+                  setState(() {});
+                },
+                onScaleEnd: (details) {
+                  _previousScale = 1.0;
+                  setState(() {});
+                },
+                child: Transform.scale(
+                  scale: _scale,
+                  child: AnimatedContainer(
+                    duration: const Duration(
+                      milliseconds: 200,
+                    ),
+                    // width: _isHovered ? 220 : 200,
+                    // height: _isHovered ? 220 : 200,
+                    // color: _isHovered ? Colors.blue : Colors.red,
+                    child: Center(
+                      child: Text(
+                        "PRASHANT MANE",
+                        style: TextStyle(
+                          letterSpacing: _isHovered ? 10 : 6,
+                          fontFamily: 'Montserrat',
+                          fontSize: 24,
+                          color: const Color.fromARGB(255, 219, 174, 30),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 5),
+            const Text(
+              'Software Developer',
+              style: TextStyle(
+                fontSize: 18,
+                letterSpacing: 1,
+                color: Colors.white70,
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            // const Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   crossAxisAlignment: CrossAxisAlignment.center,
+            //   children: [
+            //     Icon(
+            //       Icons.place_outlined,
+            //       color: Colors.grey,
+            //       size: 18,
+            //     ),
+            //     SizedBox(
+            //       width: 6,
+            //     ),
+            //     Flexible(
+            //       child:
+            const Text(
+              'Bangalore, Karnataka, India',
+              style: TextStyle(
+                fontSize: 18,
+                letterSpacing: 1,
+                color: Colors.white70,
+              ),
+              maxLines: 4,
+              textAlign: TextAlign.center,
+            ),
+            //   ),
+            // ],
+            //),
+
+            const SizedBox(
+              height: 10,
+            ),
+            // const Center(
+            //   child: Expanded(
+            //     child: Text(
+            //       "Highly skilled Flutter developer with over 2.6 years of experience in building cross-platform mobile applications. Proficient in Flutter framework, including widgets, architecture, and libraries. Strong background in UI design, API integration, state management, and third-party service integration. Excellent problem-solving skills and a keen eye for detail. Additionally, knowledgeable in .NET Web API, enhancing backend integration capabilities.",
+            //       style: TextStyle(
+            //         fontSize: 14,
+            //         letterSpacing: 1,
+            //         color: Colors.white,
+            //       ),
+            //       maxLines: 10,
+            //       overflow: TextOverflow.ellipsis,
+            //     ),
+            //   ),
+            // ),
+            const SizedBox(
+              height: 20,
+            ),
+
+            Row(
+              mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                const AnimatedCircle(),
-                // const CircleAvatar(
-                //   radius: 50,
-                //   //backgroundImage: AssetImage('assets/images/link_two.png'),
-                //   child: Icon(Icons.person),
-                // ),
-                const SizedBox(height: 20),
-                MouseRegion(
-                  onEnter: (_) => setState(() => _isHovered = true),
-                  onExit: (_) => setState(() => _isHovered = false),
-                  child: GestureDetector(
-                    onScaleStart: (details) {
-                      _previousScale = _scale;
-                      setState(() {});
+                GestureDetector(
+                  onTap: () {
+                    launchLinkedInURL();
+                  },
+                  child: Lottie.asset(
+                    "assets/animations/linkedin_anim.json",
+                    //width: 50,
+                    height: 45,
+                    fit: BoxFit.fill,
+                    //controller: _controller,
+                    onLoaded: (composition) {
+                      _controller.duration = composition.duration;
                     },
-                    onScaleUpdate: (details) {
-                      _scale = _previousScale * details.scale;
-                      setState(() {});
-                    },
-                    onScaleEnd: (details) {
-                      _previousScale = 1.0;
-                      setState(() {});
-                    },
-                    child: Transform.scale(
-                      scale: _scale,
-                      child: AnimatedContainer(
-                        duration: const Duration(
-                          milliseconds: 200,
-                        ),
-                        // width: _isHovered ? 220 : 200,
-                        // height: _isHovered ? 220 : 200,
-                        // color: _isHovered ? Colors.blue : Colors.red,
-                        child: Center(
-                          child: Text(
-                            "PRASHANT MANE",
-                            style: TextStyle(
-                              letterSpacing: _isHovered ? 10 : 6,
-                              fontFamily: 'Montserrat',
-                              fontSize: 24,
-                              color: const Color.fromARGB(255, 219, 174, 30),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 5),
-                const Text(
-                  'Software Developer',
-                  style: TextStyle(
-                    fontSize: 18,
-                    letterSpacing: 1,
-                    color: Colors.white70,
                   ),
                 ),
                 const SizedBox(
-                  height: 5,
+                  width: 20,
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.place_outlined,
-                      color: Colors.grey,
-                      size: 18,
-                    ),
-                    SizedBox(
-                      width: 6,
-                    ),
-                    Flexible(
-                      child: Text(
-                        'Bangalore, Karnataka, India',
-                        style: TextStyle(
-                          fontSize: 18,
-                          letterSpacing: 1,
-                          color: Colors.white70,
-                        ),
-                        maxLines: 4,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Center(
-                  child: Expanded(
-                    child: Text(
-                      "Highly skilled Flutter developer with over 2.6 years of experience in building cross-platform mobile applications. Proficient in Flutter framework, including widgets, architecture, and libraries. Strong background in UI design, API integration, state management, and third-party service integration. Excellent problem-solving skills and a keen eye for detail. Additionally, knowledgeable in .NET Web API, enhancing backend integration capabilities.",
-                      style: TextStyle(
-                        fontSize: 14,
-                        letterSpacing: 1,
-                        color: Colors.white,
-                      ),
-                      maxLines: 10,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                GestureDetector(
+                  onTap: () {
+                    launchGitHubURL();
+                  },
+                  child: Lottie.asset(
+                    "assets/animations/github_anim.json",
+                    // width: 30,
+                    height: 35,
+                    fit: BoxFit.fill,
+                    //frameRate: const FrameRate(4),
+                    //controller: _controller,
+                    onLoaded: (composition) {
+                      _controller.duration = composition.duration;
+                    },
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        launchLinkedInURL();
-                      },
-                      child: Lottie.asset(
-                        "assets/animations/linkedin_anim.json",
-                        //width: 50,
-                        height: 55,
-                        fit: BoxFit.fill,
-                        //controller: _controller,
-                        onLoaded: (composition) {
-                          _controller.duration = composition.duration;
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        launchGitHubURL();
-                      },
-                      child: Lottie.asset(
-                        "assets/animations/github_anim.json",
-                        // width: 30,
-                        height: 40,
-                        fit: BoxFit.fill,
-                        frameRate: const FrameRate(4),
-                        //controller: _controller,
-                        onLoaded: (composition) {
-                          _controller.duration = composition.duration;
-                        },
-                      ),
-                    ),
-                  ],
-                )
               ],
             ),
-          ),
+            const SizedBox(
+              height: 140,
+            ),
+          ],
         ),
       ),
     );
@@ -312,3 +316,4 @@ void launchGitHubURL() async {
     throw 'Could not launch $url';
   }
 }
+
