@@ -22,9 +22,11 @@ class BorderPainter extends CustomPainter {
 
     // Define gradient colors
     final List<Color> gradientColors = [
-      Colors.white60,
-      Colors.grey,
-      Colors.white60,
+       Colors.white60,
+      const Color(0xff19547b),
+      // Colors.white60,
+      // Colors.grey,
+      // Colors.white60,
     ]; // Example gradient colors
 
     final Paint animatedPaint = Paint()
