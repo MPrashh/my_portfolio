@@ -1,3 +1,3 @@
 # port_fol
 
-A new Flutter project.
+A new Flutter example.
